@@ -31,6 +31,8 @@ use SeoHelper;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Theme;
 use Throwable;
+use Botble\Ecommerce\Models\City;
+use Botble\Ecommerce\Models\State;
 
 class PublicController extends Controller
 {
@@ -342,8 +344,9 @@ class PublicController extends Controller
             ->add(__('Home'), route('public.index'))
             ->add(__('Address books'), route('customer.address'))
             ->add(__('Create Address'), route('customer.address.create'));
-
-        return Theme::scope('ecommerce.customers.address.create', [],
+        $states = State::all();
+        $cities = City::all();
+        return Theme::scope('ecommerce.customers.address.create', compact('states','cities'),
             'plugins/ecommerce::themes.customers.address.create')->render();
     }
 

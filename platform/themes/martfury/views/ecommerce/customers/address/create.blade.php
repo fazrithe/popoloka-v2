@@ -40,14 +40,23 @@
 
             <div class="form-group @if ($errors->has('state')) has-error @endif">
                 <label for="state">{{ __('State') }}:</label>
-                <input id="state" type="text" class="form-control" name="state" value="{{ old('state') }}">
+                <select  id="state" type="text" class="form-control" name="city">
+                    <option>---State---</option>
+                    @foreach($states as $sval)
+                        <option value="{{ $sval->state_id }}">{{ $sval->name }}</option>
+                    @endforeach
+                </select>
+                {{-- <input id="state" type="text" class="form-control" name="state" value="{{ old('state') }}"> --}}
 
             </div>
             {!! Form::error('state', $errors) !!}
 
             <div class="form-group @if ($errors->has('city')) has-error @endif">
                 <label for="city">{{ __('City') }}:</label>
-                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}">
+                <select  id="city" type="text" class="form-control" name="city">
+                    <option>---City---</option>
+                </select>
+                {{-- <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}"> --}}
 
             </div>
             {!! Form::error('city', $errors) !!}
